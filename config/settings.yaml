@@ -1,0 +1,6 @@
+# config/settings.yaml
+llm_api_endpoint: 'https://api.llmservice.com'
+smtp_server: 'smtp.example.com'
+smtp_port: 587
+notification_recipient_email: 'user@example.com'
+retry_attempts: 5
