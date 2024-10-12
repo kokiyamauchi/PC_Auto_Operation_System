@@ -6,6 +6,7 @@ PC Auto Operation Systemは、大規模言語モデル（LLM）を使用して�
 
 arduino
 コードをコピーする
+```
 C:.
 ├─config
 ├─data
@@ -24,6 +25,7 @@ C:.
 │  ├─task_manager
 │  └─utils
 └─tests
+```
 ディレクトリの説明
 config: LLM APIやSMTPサーバーの設定を含む設定ファイルが格納されています。
 data: スクリプトやスクリーンショットなど、タスク関連のデータファイルを保存します。
