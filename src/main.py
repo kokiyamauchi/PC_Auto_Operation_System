@@ -13,15 +13,37 @@ import yaml
 
 def load_config(file_path='config/settings.yaml'):
     """設定ファイルを読み込む関数"""
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"設定ファイルが見つかりません: {file_path}")
     with open(file_path, 'r') as file:
         return yaml.safe_load(file)
 
 # ロガーのセットアップ
 logger = setup_logger()
 
+def initialize_task_queue(config):
+    """タスクキューを初期化"""
+    initial_tasks = config.get('initial_tasks', [])
+    
+    if not initial_tasks:
+        logger.warning("初期タスクが設定ファイルにありません。デフォルトタスクを設定します。")
+        initial_tasks = [
+            {"id": 1, "type": "screenshot_analysis", "description": "Take a screenshot and analyze."}
+        ]
+    
+    task_queue = TaskQueueManager()
+    for task in initial_tasks:
+        task_queue.add_task(task)
+    
+    return task_queue
+
 def main():
     # 設定の読み込み
-    config = load_config()
+    try:
+        config = load_config()
+    except FileNotFoundError as e:
+        logger.error(str(e))
+        return
 
     # 初期化
     screenshot_capturer = ScreenshotCapture()
@@ -29,7 +51,7 @@ def main():
     script_generator = ScriptGenerator()
     script_runner = ScriptRunner()
     feedback_checker = FeedbackLoopChecker(api_endpoint=config['llm_api_endpoint'])
-    task_queue = TaskQueueManager()
+    task_queue = initialize_task_queue(config)
     retry_mechanism = RetryMechanism(max_retries=config['retry_attempts'])
     notification_manager = NotificationManager(
         smtp_server=config['smtp_server'],
