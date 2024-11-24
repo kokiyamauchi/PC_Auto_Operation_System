@@ -1,20 +1,25 @@
+
+# task_queue.py
 import queue
 
 class TaskQueueManager:
     def __init__(self):
         self.task_queue = queue.Queue()
+        self.processing_tasks = set()
 
     def add_task(self, task):
-        """新しいタスクをキューに追加"""
         self.task_queue.put(task)
 
     def get_next_task(self):
-        """次のタスクを取得して返す"""
         if not self.task_queue.empty():
-            return self.task_queue.get()
+            task = self.task_queue.get()
+            self.processing_tasks.add(task['id'])
+            return task
         return None
 
-    def is_empty(self):
-        """キューが空かどうかを確認"""
-        return self.task_queue.empty()
+    def mark_completed(self, task_id):
+        if task_id in self.processing_tasks:
+            self.processing_tasks.remove(task_id)
 
+    def is_empty(self):
+        return self.task_queue.empty() and not self.processing_tasks

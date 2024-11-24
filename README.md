@@ -9,24 +9,43 @@ PC Auto Operation Systemは、大規模言語モデル（LLM）を使用して�
 arduino
 コードをコピーする
 ```
-C:.
-├─config
-├─data
-│  ├─batch
-│  ├─python
-│  ├─screenshots
-│  ├─scripts
-│  └─shell
-├─logs
-├─src
-│  ├─error_handling
-│  ├─execution
-│  ├─feedback_loop
-│  ├─llm
-│  ├─screenshot
-│  ├─task_manager
-│  └─utils
-└─tests
+PC_AUTO_OPERATION_SYSTEM/
+├── 設定/
+│ └── settings.yaml
+├── ログ/
+│ ├── execution.log
+│ └── operation_history.log
+├── ソースコード/
+│ ├── エラー処理/
+│ │ ├── notification.py
+│ │ └── retry_mechanism.py
+│ ├── 実行/
+│ │ ├── error_handler.py
+│ │ └── runner.py
+│ ├── フィードバックループ/
+│ │ ├── checker.py
+│ │ └── LLM/
+│ │ ├── interface.py
+│ │ └── script_generator.py
+│ ├── プロンプト/
+│ │ ├── プロンプト群/
+│ │ │ └── prompt_1.txt
+│ │ └── prompt_manager.py
+│ ├── スクリーンショット/
+│ │ └── capture.py
+│ ├── タスク/
+│ │ ├── task_manager.py
+│ │ ├── task_queue.py
+│ │ └── task_status.py
+│ └── ユーティリティ/
+│ ├── file_manager.py
+│ └── logger.py
+└── テスト/
+├── test_capture.py
+├── test_error_handler.py
+├── test_runner.py
+└── test_script_generator.py
+
 ```
 ディレクトリの説明
 config: LLM APIやSMTPサーバーの設定を含む設定ファイルが格納されています。 

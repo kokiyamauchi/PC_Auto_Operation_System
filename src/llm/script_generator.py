@@ -1,28 +1,32 @@
+# script_generator.py
 class ScriptGenerator:
     def __init__(self):
-        pass
+        self.supported_types = {'python', 'batch', 'shell'}
 
-    def generate_script(self, llm_response, script_type='python'):
-        """LLMの解析結果に基づいてスクリプトを生成する"""
-        if script_type == 'python':
-            return self._generate_python_script(llm_response)
-        elif script_type == 'batch':
-            return self._generate_batch_script(llm_response)
-        elif script_type == 'shell':
-            return self._generate_shell_script(llm_response)
-        else:
-            raise ValueError("Unsupported script type")
+    def generate_script(self, llm_response: dict, script_type: str = 'python') -> str:
+        if script_type not in self.supported_types:
+            raise ValueError(f"Unsupported script type: {script_type}")
 
-    def _generate_python_script(self, llm_response):
-        """Pythonスクリプトの生成ロジック"""
-        # ここにPythonスクリプト生成の詳細実装を追加
-        return "Generated Python Script"
+        generator_method = getattr(self, f"_generate_{script_type}_script")
+        return generator_method(llm_response)
 
-    def _generate_batch_script(self, llm_response):
-        """バッチファイルの生成ロジック"""
-        return "Generated Batch Script"
+    def _generate_python_script(self, llm_response: dict) -> str:
+        code = llm_response.get('code', '')
+        return f"""#!/usr/bin/env python3
+# Generated Python Script
+{code}
+"""
 
-    def _generate_shell_script(self, llm_response):
-        """シェルスクリプトの生成ロジック"""
-        return "Generated Shell Script"
+    def _generate_batch_script(self, llm_response: dict) -> str:
+        code = llm_response.get('code', '')
+        return f"""@echo off
+REM Generated Batch Script
+{code}
+"""
 
+    def _generate_shell_script(self, llm_response: dict) -> str:
+        code = llm_response.get('code', '')
+        return f"""#!/bin/bash
+# Generated Shell Script
+{code}
+"""

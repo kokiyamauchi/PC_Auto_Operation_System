@@ -1,1 +1,29 @@
  
+2024-11-22 01:36:44,489 - INFO - Final goal set to: パソコンを操作して、ブラウザを開いて、Googleのトップページを開く
+2024-11-22 01:36:44,491 - ERROR - Failed to initialize components: [WinError 3] 指定されたパスが見つかりません。: 'prompts'
+2024-11-22 01:39:45,687 - INFO - Final goal set to: パソコンを操作して、ブラウザを開いて、Googleのトップページを開く
+2024-11-22 01:39:45,687 - ERROR - Failed to initialize components: [WinError 3] 指定されたパスが見つかりません。: 'prompts'
+Traceback (most recent call last):
+  File "C:\Users\MAC\pythonfile\without_trade\PC_Auto_Operation_System\main.py", line 38, in main
+    prompt_manager = PromptManager()
+  File "C:\Users\MAC\pythonfile\without_trade\PC_Auto_Operation_System\src\prompt\prompt_manager.py", line 8, in __init__
+    self.prompts = self._load_prompts()
+  File "C:\Users\MAC\pythonfile\without_trade\PC_Auto_Operation_System\src\prompt\prompt_manager.py", line 12, in _load_prompts
+    for filename in os.listdir(self.prompt_dir):
+FileNotFoundError: [WinError 3] 指定されたパスが見つかりません。: 'prompts'
+2024-11-22 01:54:37,438 - INFO - Final goal set to: パソコンを操作して、ブラウザを開いて、Googleのトップページを開く
+2024-11-22 01:54:37,439 - ERROR - Failed to initialize components: [WinError 3] 指定されたパスが見つかりません。: 'prompts'
+Traceback (most recent call last):
+  File "C:\Users\MAC\pythonfile\without_trade\PC_Auto_Operation_System\src\main.py", line 58, in main
+    prompt_manager = PromptManager()
+  File "C:\Users\MAC\pythonfile\without_trade\PC_Auto_Operation_System\src\prompt\prompt_manager.py", line 8, in __init__
+    self.prompts = self._load_prompts()
+  File "C:\Users\MAC\pythonfile\without_trade\PC_Auto_Operation_System\src\prompt\prompt_manager.py", line 12, in _load_prompts
+    for filename in os.listdir(self.prompt_dir):
+FileNotFoundError: [WinError 3] 指定されたパスが見つかりません。: 'prompts'
+2024-11-22 01:55:54,674 - INFO - Final goal set to: パソコンを操作して、ブラウザを開いて、Googleのトップページを開く
+2024-11-22 01:55:54,675 - ERROR - Failed to initialize components: 'claude_api_key not found in config file'
+Traceback (most recent call last):
+  File "C:\Users\MAC\pythonfile\without_trade\PC_Auto_Operation_System\src\main.py", line 69, in main
+    raise KeyError("claude_api_key not found in config file")
+KeyError: 'claude_api_key not found in config file'

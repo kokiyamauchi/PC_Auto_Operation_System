@@ -1,3 +1,4 @@
+# task_status.py
 class TaskExecutionStatus:
     def __init__(self):
         self.status = {}
@@ -17,8 +18,7 @@ class TaskExecutionStatus:
 
     @property
     def successful_tasks_count(self):
-        return sum(1 for status in self.status.values() 
-                  if status == "completed")
+        return sum(1 for status in self.status.values() if status == "completed")
 
     def get_task_status(self, task_id):
         return self.status.get(task_id, "unknown")
